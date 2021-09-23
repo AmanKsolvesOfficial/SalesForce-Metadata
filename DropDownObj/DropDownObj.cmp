@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="DropDownController">
+
+    <aura:attribute name="orgObjects" type="List" />
+
+    <aura:attribute name="selectedSobject" type="String" />
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+    <lightning:card variant="Narrow" title="SalesForce Metadata">
+
+        <lightning:layout horizontalAlign="center" multipleRows="true">
+            <lightning:layoutItem size="6" padding="around-small">
+                <lightning:combobox name="progress" label="Objects" placeholder="Select Objects"
+                    options="{!v.orgObjects }" onchange="{!c.getObjName}" />
+
+            </lightning:layoutItem>
+
+            <lightning:layoutItem size="12" padding="around-small">
+                <c:MultiSelectObj aura:id="msComponent" Sobject="{!v.selectedSobject}"></c:MultiSelectObj>
+            </lightning:layoutItem>
+
+        </lightning:layout>
+
+    </lightning:card>
+
+</aura:component>

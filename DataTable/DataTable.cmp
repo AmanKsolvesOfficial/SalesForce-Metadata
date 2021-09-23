@@ -1,0 +1,30 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="FetchQuery">
+
+
+    <!-- attributes -->
+    <aura:attribute name="Query" type="String" />
+    <aura:attribute name="columns" type="List" />
+    <aura:attribute name="objectType" type="String" />
+    <aura:attribute name="data" type="sObject[]" />
+
+    <!-- Main Attributes -->
+    <aura:attribute name="FieldsName" type="List" />
+
+    <!-- handlers-->
+
+    <aura:method name="ShowData" action="{!c.onShowData}" description=" Show Data" />
+
+
+    <!-- event handler -->
+    <!-- <aura:handler event="c:QueryRecordResultApplicationEvent" action="{!c.onResult}" /> -->
+
+
+
+
+
+    <!-- the container element determine the height of the datatable -->
+    <div style="height: 300px">
+        <lightning:datatable keyField="id" data="{! v.data }" columns="{! v.FieldsName }" hideCheckboxColumn="true" />
+    </div>
+
+</aura:component>

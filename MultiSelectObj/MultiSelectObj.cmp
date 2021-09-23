@@ -1,0 +1,75 @@
+<aura:component implements="flexipage:availableForAllPageTypes" controller="MultiSelectFieldController">
+
+
+    <aura:attribute name="OFields" type="List" />
+    <aura:attribute name="Sobject" type="String" />
+    <aura:attribute name="Fields" type="List" default="[]" />
+    <aura:attribute name="QString" type="String" />
+    <aura:attribute name="hasQuery" type="Boolean" default="false" />
+    <aura:attribute name="showQuery" type="Boolean" default="false" />
+    <aura:attribute name="showTable" type="Boolean" default="false" />
+
+    <!-- <aura:handler name="init" value="{!this}" action="{!c.getRelatedFields}" /> -->
+    <aura:method name="RenderObj" action="{!c.getRelatedFields}" description=" RenderObj" />
+
+
+
+
+
+    <div class="child-MultiSelect">
+        Object is :{!v.Sobject}
+        <lightning:layout multipleRows="true">
+            <lightning:layoutItem size="12" padding="around-small">
+                <lightning:dualListbox name="languages" label="Select Fields" sourceLabel="Available"
+                    selectedLabel="Selected" fieldLevelHelp="Select your preferred languages" options="{!v.Fields}"
+                    onchange="{! c.getQuery }" />
+            </lightning:layoutItem>
+
+            <!-- <lightning:layoutItem size="6" padding="around-small">
+
+                <lightning:button variant="success" label="Get Query" title="Success" onclick="{! c.displayQuery }" />
+
+            </lightning:layoutItem> -->
+
+            <aura:if isTrue="{!v.hasQuery}">
+
+                <lightning:layoutItem>
+
+                    <span class=".slds-badge .slds-theme_success">Query</span>
+                    <p class="slds-text-heading--medium"> {!v.QString}</p>
+
+                </lightning:layoutItem>
+
+            </aura:if>
+            <lightning:button variant="brand" label="Get Result" title="Brand action" onclick="{!c.getData}" />
+
+            <aura:if isTrue="{!v.showTable}">
+
+                <lightning:layoutItem size="12">
+
+
+
+                    <c:DataTable aura:id="DTable" columns="{!v.OFields}" Query="{!v.QString}" objectType="{!v.Sobject}">
+                    </c:DataTable>
+
+                </lightning:layoutItem>
+            </aura:if>
+
+
+
+
+
+
+
+        </lightning:layout>
+
+
+    </div>
+
+
+
+
+
+
+
+</aura:component>

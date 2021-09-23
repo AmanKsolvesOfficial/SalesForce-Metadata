@@ -1,0 +1,6 @@
+({
+    getSObjects : function(component) {
+       
+
+    }
+})
